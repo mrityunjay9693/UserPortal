@@ -17,6 +17,9 @@
     <!-- Component scanning for controllers, services, etc. -->
     <context:component-scan base-package="com.tilde.userportal" />
 
+    <!-- Load database properties from application.properties -->
+     <context:property-placeholder location="classpath:application.properties"/> 
+
     <!-- ========================= -->
     <!-- THYMELEAF CONFIGURATION  -->
     <!-- ========================= -->
@@ -41,18 +44,19 @@
         <property name="order" value="1" />
     </bean>
 
-    <!-- (Later) Database Configuration -->
-    <!--
+    <!-- =======================-->
+    <!-- Database Configuration -->
+    <!-- =======================-->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="org.postgresql.Driver"/>
-        <property name="url" value="jdbc:postgresql://localhost:5432/userdb"/>
-        <property name="username" value="postgres"/>
-        <property name="password" value="your_password"/>
+        <property name="driverClassName" value="${spring.datasource.driver-class-name}"/>
+        <property name="url" value="${spring.datasource.url}"/>
+        <property name="username" value="${spring.datasource.username}"/>
+        <property name="password" value="${spring.datasource.password}"/>
     </bean>
 
+    <!-- JDBCTemplate Bean-->
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-    -->
 
 </beans>
