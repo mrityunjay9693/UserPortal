@@ -12,8 +12,12 @@
            https://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- Enable Spring MVC annotations like @Controller -->
-    <mvc:annotation-driven />
-
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    
     <!-- Component scanning for controllers, services, etc. -->
     <context:component-scan base-package="com.tilde.userportal" />
 
